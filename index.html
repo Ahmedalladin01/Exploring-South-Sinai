@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>South Sinai Tourist Resort Project</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-image: url("image/background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 3rem;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0057b7 0%, #003a86 100%);
+      color: #fff;
+      padding: 2rem 2.5rem;
+      width: 100%;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 4px 15px rgba(0, 87, 183, 0.6);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    header h1 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    nav {
+      background-color: #003a86;
+      width: 100%;
+      margin: 1.5rem 0 0;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 58, 134, 0.6);
+      user-select: none;
+      font-weight: 700;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: #bdd1f9;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem 1.2rem;
+      border-bottom: 4px solid transparent;
+      transition: all 0.3s ease;
+      border-radius: 15px 15px 0 0;
+      box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.15);
+    }
+    nav button:hover,
+    nav button:focus {
+      color: #fff;
+      outline: none;
+      background-color: #0057b7;
+      box-shadow: inset 0 5px 10px rgba(255, 255, 255, 0.3);
+    }
+    nav button.active {
+      color: #6d6c6c;
+      border-color: #ccd1d1;
+      background: linear-gradient(135deg, #ccd1d1, #ccd1d1);
+      box-shadow: 0 4px 15px #ccd1d1;
+      text-shadow: 0 0 6px #ffffff;
+    }
+
+    main {
+      background: rgba(255, 255, 255, 0.9); /* Slightly transparent background for readability */
+      width: 100%;
+      padding: 2.5rem 3rem 3rem;
+      border-radius: 30px;
+      box-shadow: 0 12px 25px rgba(0, 87, 183, 0.25);
+      min-height: 380px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #222;
+      transition: opacity 0.4s ease;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    section {
+      display: none;
+      font-weight: 400;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #0057b7;
+      margin-bottom: 1.25rem;
+      font-weight: 800;
+      font-size: 1.8rem;
+      border-left: 6px solid #0057b7;
+      padding-left: 0.75rem;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    h3 {
+      color: #003a86;
+      margin: 1.5rem 0 0.75rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    ul {
+      list-style: inside disc;
+      margin: 0.5rem 0 1rem 0;
+      padding-left: 1.2rem;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    strong {
+      color: #003a86;
+    }
+
+    /* Buttons container */
+    .btn-container {
+      margin-top: 2.25rem;
+      display: flex;
+      gap: 2.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 180px; /* Equal width for both buttons */
+    }
+
+    /* Buttons */
+    .btn-animated,
+    .btn-animated-link {
+      background-color: #0057b7;
+      color: white;
+      border: none;
+      padding: 0.85rem 2.5rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0, 87, 183, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .btn-animated::before,
+    .btn-animated-link::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.45) 20%, transparent 60%);
+      transform: translate(-100%, -100%);
+      transition: transform 0.5s ease;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .btn-animated:hover,
+    .btn-animated-link:hover {
+      transform: scale(1.12);
+      box-shadow: 0 10px 30px rgba(0, 87, 183, 0.85);
+      background-color: #004299;
+    }
+    .btn-animated:hover::before,
+    .btn-animated-link:hover::before {
+      transform: translate(0, 0);
+    }
+
+    .btn-address {
+      display: none; /* Hidden as previously requested */
+      font-size: 0.95rem;
+      color: #003a86;
+      max-width: 220px;
+      line-height: 1.3;
+      text-align: center;
+      user-select: text;
+      word-break: break-word;
+      font-weight: 600;
+      font-style: italic;
+      filter: drop-shadow(0 0 1px #004080);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      body {
+        padding-bottom: 2rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+      nav {
+        gap: 1.5rem;
+        padding: 0.9rem 1rem;
+      }
+      nav button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+      main {
+        padding: 2rem 1.5rem 2rem;
+        min-height: 300px;
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.1rem;
+      }
+      .btn-container {
+        gap: 1.5rem;
+      }
+      .btn-group {
+        width: 140px;
+      }
+      .btn-animated,
+      .btn-animated-link {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+      }
+      .btn-address {
+        max-width: 280px;
+      }
+    }
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.3rem;
+        line-height: 1.4;
+      }
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.8rem 1rem;
+        border-radius: 20px;
+      }
+      nav button {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+      }
+      main {
+        padding: 1.5rem 1rem 1.5rem;
+        font-size: 0.95rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      h3 {
+        font-size: 1.05rem;
+      }
+      .btn-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .btn-group {
+        width: 100%;
+      }
+      .btn-animated,
+      .btn-animated-link {
+        width: 100%;
+        padding: 0.7rem 1.5rem;
+      }
+      .btn-address {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exploring South Sinai: Tourism, Heritage, and Communities</h1>
+  </header>
+  <nav role="tablist" aria-label="Main navigation">
+    <button role="tab" aria-selected="true" aria-controls="home-tab" id="home-btn" class="active">Home</button>
+    <button role="tab" aria-selected="false" aria-controls="project-tab" id="project-btn">Project Overview</button>
+    <button role="tab" aria-selected="false" aria-controls="content-tab" id="content-btn">Content</button>
+  </nav>
+  <main>
+    <section id="home-tab" role="tabpanel" aria-labelledby="home-btn" class="active">
+      <h2>Welcome to South Sinai Governorate</h2>
+      <p>
+        South Sinai Governorate is a region rich in history and cultural heritage, nestled between the Red Sea and the deserts of Egypt. Its strategic location has long been a crossroads of civilizations.
+      </p>
+      <p>
+        The governorate features unique key landmarks such as ancient monasteries, Bedouin traditions, and vibrant markets. It offers an experience that blends history and modern tourism.
+      </p>
+      <p>
+        Natural landscapes here include spectacular mountain ranges, pristine beaches with coral reefs, and stunning desert vistas, creating an unparalleled setting for tourists.
+      </p>
+      <div class="btn-container">
+        <div class="btn-group">
+          <a href="https://southsinai.gov.eg/Governor" target="_blank" rel="noopener noreferrer" class="btn-animated-link" aria-label="Contact Us">Contact Us</a>
+          <p class="btn-address">https://southsinai.gov.eg/Governor</p>
+          <a href="https://maps.google.com/maps?ll=28.83336,33.756404&z=8&t=m&hl=en&gl=EG&mapclient=embed&q=South%20Sinai%20Governorate" target="_blank" rel="noopener noreferrer" class="btn-animated-link" aria-label="Contact Us">Visit Us</a>
+          <p class="btn-address">https://maps.google.com/maps?ll=28.83336,33.756404&z=8&t=m&hl=en&gl=EG&mapclient=embed&q=South%20Sinai%20Governorate</p>
+        </div>
+      </div>
+    </section>
+    <section id="project-tab" role="tabpanel" aria-labelledby="project-btn" tabindex="0">
+      <h2>Project Overview</h2>
+      <h3>Population of South Sinai</h3>
+      <p>
+        South Sinai is one of the least densely populated governorates in Egypt. The population is relatively small and is mainly concentrated in a few urban centers such as El Tor (the capital), Sharm El-Sheikh, Dahab, and Nuweiba. The region is also home to Bedouin tribes who preserve a unique cultural and social heritage.
+      </p>
+      <h3>Tourism in South Sinai</h3>
+      <p>
+        Tourism is a vital sector in South Sinai, significantly contributing to the local and national economy. The region is known for its stunning natural beauty, including desert landscapes, coral reefs, and pristine beaches, as well as its religious and historical significance—especially in areas like Saint Catherine.
+      </p>
+      <h3>Tourist Attractions</h3>
+      <ul>
+        <li><strong>Sharm El-Sheikh:</strong> A world-famous resort city known for diving and luxury tourism.</li>
+        <li><strong>Dahab:</strong> Popular for eco-tourism and water sports.</li>
+        <li><strong>Saint Catherine Monastery:</strong> A UNESCO World Heritage Site of great religious importance.</li>
+        <li><strong>Ras Mohammed National Park:</strong> A protected marine area with rich biodiversity.</li>
+        <li><strong>Mount Sinai:</strong> A major pilgrimage site and popular hiking destination.</li>
+      </ul>
+      <h3>Tourist Statistics</h3>
+      <p>
+        South Sinai attracts millions of visitors annually, both domestic and international. The number of tourists varies depending on global travel trends and regional stability, but Sharm El-Sheikh alone often receives over one million tourists per year, making it one of the top destinations in the Middle East.
+      </p>
+      <p>We are interested in establishing a tourist resort in South Sinai Governorate.</p>
+    </section>
+    <section id="content-tab" role="tabpanel" aria-labelledby="content-btn" tabindex="0">
+      <h2>Content</h2>
+      <h3>Population in Sinai</h3>
+      <p>
+        The population in Sinai is diverse, consisting of both local residents and a significant number of tourists. The region is home to various Bedouin tribes, each with its own unique culture and traditions. The population density is low, with most people living in urban centers like Sharm El-Sheikh and Dahab.
+      </p>
+      <div class="btn-container">
+        <div class="btn-group">
+          <a href="https://www.arcgis.com/apps/dashboards/7cabb5a66a5d4e8191b0e3986ed14432" target="_blank" rel="noopener noreferrer" class="btn-animated-link">View Population</a>
+        </div>
+      </div>
+      <h3>Tourist Attractions in Sinai</h3>
+      <p>
+        Sinai is renowned for its breathtaking landscapes and rich history. Tourists flock to the region for its stunning beaches, coral reefs, and historical sites. Popular attractions include Mount Sinai, Saint Catherine Monastery, and the vibrant coral reefs of Ras Mohammed National Park.
+      </p>
+      <div class="btn-container">
+        <div class="btn-group">
+          <a href="https://www.arcgis.com/apps/dashboards/a717268cc81541b4909c95ff25b8863c" target="_blank" rel="noopener noreferrer" class="btn-animated-link">Explore Sinai</a>
+        </div>
+      </div>
+      <h3>Sinai from Another Perspective</h3>
+      <p>
+        South Sinai Governorate offers a unique blend of natural beauty and cultural heritage. The region is not only a tourist hotspot but also a place where ancient traditions are preserved. Visitors can experience the rich Bedouin culture while enjoying the stunning landscapes.
+      </p>
+      <div class="btn-container">
+        <div class="btn-group">
+          <a href="https://storymaps.arcgis.com/templates/00b69495acc74faea36fb44220a6a3d7" target="_blank" rel="noopener noreferrer" class="btn-animated-link">Sinai</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Tab switching logic
+    const tabs = document.querySelectorAll('nav button[role="tab"]');
+    const sections = document.querySelectorAll('main section[role="tabpanel"]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        sections.forEach(sec => sec.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const panelId = tab.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        panel.classList.add('active');
+        panel.focus();
+      });
+    });
+  </script>
+</body>
+</html>
